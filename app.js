@@ -1,5 +1,5 @@
 // Set up rate limiter: maximum of twenty requests per minute
-const RateLimit = require('express-rate-limit');
+//const RateLimit = require('express-rate-limit');
 const debug = require('debug')('mongo-connect');
 const cookieParser = require('cookie-parser');
 const createError = require('http-errors');
@@ -16,8 +16,6 @@ require('dotenv').config();
 const dev_db_url = process.env.CONECTION_STRING;
 
 const mongoDB = process.env.MONGODB_URI || dev_db_url;
-
-console.log(process.env);
 
 main().catch(debug);
 
@@ -38,12 +36,12 @@ app.set('view engine', 'pug');
 // reduce fingerprinting
 app.disable('x-powered-by');
 
-const limiter = RateLimit({
+/* const limiter = RateLimit({
 	windowMs: 1 * 60 * 1000, // 1 minute
 	max: 20,
 });
 // Apply rate limiter to all requests
-app.use(limiter);
+app.use(limiter); */
 app.use(compression()); // Compress all routes
 app.use(
 	helmet.contentSecurityPolicy({
